@@ -1,5 +1,5 @@
 import pandas as pd
-class regression:
+class Regression:
     n = m = p = nabla = 0
     X = y = theta = []
     
@@ -57,7 +57,7 @@ class regression:
 #     [6]
 # ]
 # output_dataset = [1, 1, 1, 1, 1, 1]
-# reg = regression(input_dataset, output_dataset, number_of_iterations, learning_rate)
+# reg = Regression(input_dataset, output_dataset, number_of_iterations, learning_rate)
 
 # test = []
 # for i in range(6, 10):
