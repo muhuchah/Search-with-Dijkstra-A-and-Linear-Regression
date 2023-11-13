@@ -192,6 +192,9 @@ if len(way):
         f.write(f"Time: {round(flight.flytime, r)} h\n")
         f.write(f"Price: {round(flight.price, r)} $\n")
         f.write("----------------------------\n")
+        total_distance += flight.distance
+        total_flytime += flight.flytime
+        total_price += flight.price
         
     f.write(f"Total Price: {round(total_price, r)} $\n")
     f.write(f"Total Duration: {round(total_distance, r)} km\n")
@@ -256,6 +259,9 @@ if len(way):
         f.write(f"Time: {round(flight.flytime, r)} h\n")
         f.write(f"Price: {round(flight.price, r)} $\n")
         f.write("----------------------------\n")
+        total_distance += flight.distance
+        total_flytime += flight.flytime
+        total_price += flight.price
         
     f.write(f"Total Price: {round(total_price, r)} $\n")
     f.write(f"Total Duration: {round(total_distance, r)} km\n")
