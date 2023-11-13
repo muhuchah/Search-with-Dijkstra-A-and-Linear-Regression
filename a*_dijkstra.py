@@ -220,7 +220,7 @@ else:
 # %%
 # create file for A*
 f = open("1-UIAI4021-PR1-Q1(A*).txt", "w")
-f.write("Dijkstra Algorithm\n")
+f.write("A* Algorithm\n")
 f.write(f"Execution Time: {round(total_time, 6)} Seconds\n")
 f.write(".-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-\n")
 if len(way):
