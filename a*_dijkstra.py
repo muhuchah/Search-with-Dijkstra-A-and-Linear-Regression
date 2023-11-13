@@ -1,7 +1,3 @@
-# %% [markdown]
-# # A* algorithm
-
-# %%
 # Import necessary libraries
 import numpy as np
 import pandas as pd
@@ -9,11 +5,9 @@ from heapq import heappush, heappop
 import time
 import math
 
-# %%
 # Read data from the CSV file into a Pandas DataFrame
 df = pd.read_csv("~/Downloads/Dataset.csv")
 
-# %%
 class airport_information:
     def __init__(self, city, country, latitude, longitude, altitude):
         self.city = city
@@ -22,7 +16,6 @@ class airport_information:
         self.longitude = longitude
         self.altitude = altitude
 
-# %%
 # Read information form dataset and save in datastructures
 airports = set()
 airports_name_to_index = dict()
@@ -56,9 +49,7 @@ for i in df.index:
         ind += 1
 
 number_of_airports = len(airports)
-print(number_of_airports)
 
-# %%
 # calculate cost of flights
 def calc(distance, flytime, price):
     result = (1 * distance) + (80 * flytime) + (1 * price)
@@ -95,7 +86,6 @@ class ghf:
         self.h = h
         self.f = self.g + self.h
 
-# %%
 # create Graph
 flights_information = np.empty(4000, dtype=flights_list)
 for i in range(number_of_airports):
@@ -113,19 +103,15 @@ for i in df.index:
     inf = flight_information(index_source_airport, index_destination_airport, airline, distance, flytime, price)
     flights_information[index_source_airport].add_flight(inf)
 
-# %%
 # Get input
-# inp = input()
-inp = "Imam Khomeini International Airport - Raleigh Durham International Airport"
+inp = input()
+#inp = "Imam Khomeini International Airport - Raleigh Durham International Airport"
 source_airport, destination_airport = inp.split('-')
 source_airport = source_airport.strip()
 destination_airport = destination_airport.strip()
 index_source_airport = airports_name_to_index[source_airport]
 index_destination_airport = airports_name_to_index[destination_airport]
 
-print(index_source_airport, index_destination_airport)
-
-# %%
 # calculate heuristic
 def heuristic(cur_airport, destination):
     # Euclidean
@@ -135,7 +121,6 @@ def heuristic(cur_airport, destination):
 
     return ((x*x) + (y*y) + (z*z)) ** 0.5
 
-# %%
 # A* Algorithm
 start_time = time.time()
 
@@ -179,7 +164,6 @@ while openList:
 
 total_time = round(time.time() - start_time, 6)
 
-# %%
 # save path in list way
 destination = index_destination_airport
 way = []
@@ -194,30 +178,6 @@ while destination != -1:
 way.pop()
 way = way[::-1]
 
-# %%
-print("A* Algorithm")
-print(f"Execution Time: {round(total_time, 6)} Seconds")
-print(".-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
-if len(way):
-    for index, flight in enumerate(way):
-        print(f"Flight #{index+1} ({flight.airline}):")
-        print(f"From: {airports_index_to_name[flight.source_airport]} - {airports_information[flight.source_airport].city}, {airports_information[flight.source_airport].country}")
-        print(f"To: {airports_index_to_name[flight.destination_airport]} - {airports_information[flight.destination_airport].city}, {airports_information[flight.destination_airport].country}")
-        print(f"Duration: {round(flight.distance, r)} km")
-        print(f"Time: {round(flight.flytime, r)} h")
-        print(f"Price: {round(flight.price, r)} $")
-        print("----------------------------")
-        total_distance += flight.distance
-        total_flytime += flight.flytime
-        total_price += flight.price
-        
-    print(f"Total Price: {round(total_price, r)} $")
-    print(f"Total Duration: {round(total_distance, r)} km")
-    print(f"Total Time: {round(total_flytime, r)} h")
-else:
-    print("Way Not Found!")
-
-# %%
 # create file for A*
 f = open("1-UIAI4021-PR1-Q1(A*).txt", "w")
 f.write("A* Algorithm\n")
@@ -240,10 +200,6 @@ else:
     f.write("Way Not Found!\n")
 f.close()
 
-# %% [markdown]
-# ## Dijkstra
-
-# %%
 # Dijkstar Algorithm
 start_time = time.time()
 
@@ -272,7 +228,6 @@ while open_list:
 
 total_time = round(time.time() - start_time, 6)
 
-# %%
 # save path in list way
 destination = index_destination_airport
 way = []
@@ -287,30 +242,6 @@ while destination != -1:
 way.pop()
 way = way[::-1]
 
-# %%
-print("Dijkstra Algorithm")
-print(f"Execution Time: {round(total_time, 6)} Seconds")
-print(".-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
-if len(way):
-    for index, flight in enumerate(way):
-        print(f"Flight #{index+1} ({flight.airline}):")
-        print(f"From: {airports_index_to_name[flight.source_airport]} - {airports_information[flight.source_airport].city}, {airports_information[flight.source_airport].country}")
-        print(f"To: {airports_index_to_name[flight.destination_airport]} - {airports_information[flight.destination_airport].city}, {airports_information[flight.destination_airport].country}")
-        print(f"Duration: {round(flight.distance, r)} km")
-        print(f"Time: {round(flight.flytime, r)} h")
-        print(f"Price: {round(flight.price, r)} $")
-        print("----------------------------")
-        total_distance += flight.distance
-        total_flytime += flight.flytime
-        total_price += flight.price
-        
-    print(f"Total Price: {round(total_price, r)} $")
-    print(f"Total Duration: {round(total_distance, r)} km")
-    print(f"Total Time: {round(total_flytime, r)} h")
-else:
-    print("Way Not Found!")
-
-# %%
 # create file for Dijkstar
 f = open("1-UIAI4021-PR1-Q1(Dijkstra).txt", "w")
 f.write("Dijkstra Algorithm\n")
@@ -332,5 +263,4 @@ if len(way):
 else:
     f.write("Way Not Found!\n")
 f.close()
-
 
